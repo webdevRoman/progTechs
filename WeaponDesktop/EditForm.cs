@@ -33,83 +33,101 @@ namespace WeaponDesktop
             {
                 case "Weapon":
                     {
-                        for (int i = 0; i < this.Controls.Count - 10; i++)
+                        while (this.Controls.Count > 10)
                         {
-                            this.Controls.RemoveAt(this.Controls.Count - 2);
                             this.Controls.RemoveAt(this.Controls.Count - 1);
                         }
+
                     }
                     break;
                 case "BladedWeapon":
                     {
-                        for (int i = 0; i < this.Controls.Count - 10; i++)
+                        while (this.Controls.Count > 10)
                         {
-                            this.Controls.RemoveAt(this.Controls.Count - 2);
                             this.Controls.RemoveAt(this.Controls.Count - 1);
                         }
-
                         BrandLbl.Text = "Brand Class:";
-                        BrandBox.Width = NameBox.Width;
+                        BrandNum.Width = NameBox.Width;
                         BrandLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
-                        BrandBox.Location = new Point(InitCostBox.Location.X, InitCostBox.Location.Y + 50);
-                        //Добавляем событие нажатия на новую кнопку 
-                        //(то же что и при нажатии на исходную)
-                        //temp.Click += new EventHandler(button1_Click);
+                        BrandNum.Location = new Point(InitCostNum.Location.X, InitCostNum.Location.Y + 50);
                         this.Controls.Add(BrandLbl);
-                        this.Controls.Add(BrandBox);
+                        this.Controls.Add(BrandNum);
                     }
                     break;
                 case "Firearm":
                     {
-                        for (int i = 0; i < this.Controls.Count - 10; i++)
+                        while (this.Controls.Count > 10)
                         {
-                            this.Controls.RemoveAt(this.Controls.Count - 2);
                             this.Controls.RemoveAt(this.Controls.Count - 1);
                         }
-
                         DestrRangeLbl.Text = "Destruction Range:";
-                        DestrRangeBox.Width = NameBox.Width;
+                        DestrRangeNum.Width = NameBox.Width;
                         DestrRangeLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
-                        DestrRangeBox.Location = new Point(InitCostBox.Location.X, InitCostBox.Location.Y + 50);
+                        DestrRangeNum.Location = new Point(InitCostNum.Location.X, InitCostNum.Location.Y + 50);
                         this.Controls.Add(DestrRangeLbl);
-                        this.Controls.Add(DestrRangeBox);
-
+                        this.Controls.Add(DestrRangeNum);
                         MagazineLbl.Text = "Magazine Capacity:";
-                        MagazineBox.Width = NameBox.Width;
+                        MagazineNum.Width = NameBox.Width;
                         MagazineLbl.Location = new Point(DestrRangeLbl.Location.X, DestrRangeLbl.Location.Y + 50);
-                        MagazineBox.Location = new Point(DestrRangeBox.Location.X, DestrRangeBox.Location.Y + 50);
+                        MagazineNum.Location = new Point(DestrRangeNum.Location.X, DestrRangeNum.Location.Y + 50);
                         this.Controls.Add(MagazineLbl);
-                        this.Controls.Add(MagazineBox);
+                        this.Controls.Add(MagazineNum);
                     }
                     break;
                 case "AutomaticWeapon":
                     {
-                        for (int i = 0; i < this.Controls.Count - 10; i++)
+                        while (this.Controls.Count > 10)
                         {
-                            this.Controls.RemoveAt(this.Controls.Count - 2);
                             this.Controls.RemoveAt(this.Controls.Count - 1);
                         }
-
                         DestrRangeLbl.Text = "Destruction Range:";
-                        DestrRangeBox.Width = NameBox.Width;
+                        DestrRangeNum.Width = NameBox.Width;
                         DestrRangeLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
-                        DestrRangeBox.Location = new Point(InitCostBox.Location.X, InitCostBox.Location.Y + 50);
+                        DestrRangeNum.Location = new Point(InitCostNum.Location.X, InitCostNum.Location.Y + 50);
                         this.Controls.Add(DestrRangeLbl);
-                        this.Controls.Add(DestrRangeBox);
-
+                        this.Controls.Add(DestrRangeNum);
                         MagazineLbl.Text = "Magazine Capacity:";
-                        MagazineBox.Width = NameBox.Width;
+                        MagazineNum.Width = NameBox.Width;
                         MagazineLbl.Location = new Point(DestrRangeLbl.Location.X, DestrRangeLbl.Location.Y + 50);
-                        MagazineBox.Location = new Point(DestrRangeBox.Location.X, DestrRangeBox.Location.Y + 50);
+                        MagazineNum.Location = new Point(DestrRangeNum.Location.X, DestrRangeNum.Location.Y + 50);
                         this.Controls.Add(MagazineLbl);
-                        this.Controls.Add(MagazineBox);
-
+                        this.Controls.Add(MagazineNum);
                         RapidityLbl.Text = "Rapidity:";
-                        RapidityBox.Width = NameBox.Width;
+                        RapidityNum.Width = NameBox.Width;
                         RapidityLbl.Location = new Point(MagazineLbl.Location.X, MagazineLbl.Location.Y + 50);
-                        RapidityBox.Location = new Point(MagazineBox.Location.X, MagazineBox.Location.Y + 50);
+                        RapidityNum.Location = new Point(MagazineNum.Location.X, MagazineNum.Location.Y + 50);
                         this.Controls.Add(RapidityLbl);
-                        this.Controls.Add(RapidityBox);
+                        this.Controls.Add(RapidityNum);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OKBtn_Click(object sender, EventArgs e)
+        {
+            switch (ClassBox.Text)
+            {
+                case "Weapon":
+                    {
+                        Weapon newWeapon = new Weapon(ClassBox.Text, (int)DamageNum.Value, (int)InitCostNum.Value);
+                        
+                    }
+                    break;
+                case "BladedWeapon":
+                    {
+                        
+                    }
+                    break;
+                case "Firearm":
+                    {
+                        
+                    }
+                    break;
+                case "AutomaticWeapon":
+                    {
+                        
                     }
                     break;
                 default:
