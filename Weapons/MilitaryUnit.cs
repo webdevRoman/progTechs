@@ -43,5 +43,4 @@ public class MilitaryUnit
             cost += weapon.GetCost();
         return cost;
     }
-
 }
