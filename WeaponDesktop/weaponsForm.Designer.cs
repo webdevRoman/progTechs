@@ -29,24 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeaponsForm));
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.weaponsLB = new System.Windows.Forms.ListBox();
             this.AddBtn = new System.Windows.Forms.Button();
             this.EditBtn = new System.Windows.Forms.Button();
             this.DeleteBtn = new System.Windows.Forms.Button();
             this.SumLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // listBox1
+            // weaponsLB
             // 
-            this.listBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.listBox1, "listBox1");
-            this.listBox1.Name = "listBox1";
+            this.weaponsLB.FormattingEnabled = true;
+            resources.ApplyResources(this.weaponsLB, "weaponsLB");
+            this.weaponsLB.Name = "weaponsLB";
+            this.weaponsLB.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // AddBtn
             // 
             resources.ApplyResources(this.AddBtn, "AddBtn");
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // EditBtn
             // 
@@ -73,7 +75,7 @@
             this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.EditBtn);
             this.Controls.Add(this.AddBtn);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.weaponsLB);
             this.Name = "WeaponsForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -83,7 +85,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox weaponsLB;
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button EditBtn;
         private System.Windows.Forms.Button DeleteBtn;
