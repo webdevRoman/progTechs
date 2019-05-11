@@ -115,6 +115,7 @@ namespace WeaponDesktop
             this.CancelBtn.TabIndex = 9;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // DamageNum
             // 
@@ -147,6 +148,7 @@ namespace WeaponDesktop
             this.Controls.Add(this.ClassBox);
             this.Name = "EditForm";
             this.Text = "EditForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.DamageNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InitCostNum)).EndInit();
             this.ResumeLayout(false);
@@ -169,6 +171,8 @@ namespace WeaponDesktop
 
         private Label BrandLbl = new Label();
         private NumericUpDown BrandNum = new NumericUpDown();
+        private Label BladeLbl = new Label();
+        private NumericUpDown BladeNum = new NumericUpDown();
         private Label DestrRangeLbl = new Label();
         private NumericUpDown DestrRangeNum = new NumericUpDown();
         private Label MagazineLbl = new Label();

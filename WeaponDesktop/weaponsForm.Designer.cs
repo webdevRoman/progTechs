@@ -55,6 +55,7 @@
             resources.ApplyResources(this.EditBtn, "EditBtn");
             this.EditBtn.Name = "EditBtn";
             this.EditBtn.UseVisualStyleBackColor = true;
+            this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
             // DeleteBtn
             // 
