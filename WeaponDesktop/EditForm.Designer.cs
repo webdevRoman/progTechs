@@ -77,7 +77,6 @@ namespace WeaponDesktop
             this.NameLbl.Size = new System.Drawing.Size(49, 17);
             this.NameLbl.TabIndex = 4;
             this.NameLbl.Text = "Name:";
-            this.NameLbl.Click += new System.EventHandler(this.label2_Click);
             // 
             // DamageLbl
             // 
@@ -148,7 +147,6 @@ namespace WeaponDesktop
             this.Controls.Add(this.ClassBox);
             this.Name = "EditForm";
             this.Text = "EditForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.DamageNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InitCostNum)).EndInit();
             this.ResumeLayout(false);

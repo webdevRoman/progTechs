@@ -16,7 +16,7 @@ namespace WeaponDesktop
         public EditForm(WeaponTransfer _weaponTransfer)
         {
             InitializeComponent();
-            
+
             ClassBox.Items.Add("Weapon");
             ClassBox.Items.Add("BladedWeapon");
             ClassBox.Items.Add("Firearm");
@@ -25,7 +25,7 @@ namespace WeaponDesktop
             weaponTransfer = _weaponTransfer;
         }
 
-        public EditForm(Weapon _weapon)
+        public EditForm(WeaponTransfer _weaponTransfer, Weapon _weapon)
         {
             InitializeComponent();
 
@@ -33,6 +33,8 @@ namespace WeaponDesktop
             ClassBox.Items.Add("BladedWeapon");
             ClassBox.Items.Add("Firearm");
             ClassBox.Items.Add("AutomaticWeapon");
+
+            weaponTransfer = _weaponTransfer;
 
             DamageNum.Minimum = 0;
             DamageNum.Maximum = 1000000;
@@ -87,11 +89,6 @@ namespace WeaponDesktop
         }
 
         private void EditForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }
@@ -225,11 +222,6 @@ namespace WeaponDesktop
         {
             weaponTransfer.weapon = null;
             Dispose();
-        }
-
-        private void EditForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            weaponTransfer.weapon = null;
         }
     }
 }

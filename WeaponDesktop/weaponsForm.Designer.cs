@@ -62,6 +62,7 @@
             resources.ApplyResources(this.DeleteBtn, "DeleteBtn");
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // SumLbl
             // 
