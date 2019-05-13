@@ -13,20 +13,17 @@ namespace WeaponDesktop
     public partial class WeaponsForm : Form
     {
         private MilitaryUnit division;
+        private Weapon weapon;
+
         public WeaponsForm()
         {
             InitializeComponent();
-
+            //Создание исходного подразделения
             Creator creator = new Creator();
             division = creator.CreateFirstMilitaryUnit();
-
-            int price = division.CalculateEquipmentCost();
-            
+            //Заполнение формы
             foreach (Weapon weapon in division.GetEquipment())
-            {
                 weaponsLB.Items.Add(weapon.GetName() + " - " + weapon.GetCost());
-            }
-
             SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
         }
 
@@ -35,52 +32,52 @@ namespace WeaponDesktop
 
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            EditBtn.Enabled = true;
-            DeleteBtn.Enabled = true;
-        }
-
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            WeaponTransfer weaponTransfer = new WeaponTransfer();
-            weaponTransfer.weapon = new Weapon();
-            EditForm editForm = new EditForm(weaponTransfer);
+            EditForm editForm = new EditForm(division);
             editForm.ShowDialog();
-            if (weaponTransfer.weapon != null)
-            {
-                division.Equip(weaponTransfer.weapon);
-                weaponsLB.Items.Add(weaponTransfer.weapon.GetName() + " - " + weaponTransfer.weapon.GetCost());
-                SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
-            }
-            
+            //Обновление данной формы
+            weaponsLB.Items.Clear();
+            foreach (Weapon weapon in division.GetEquipment())
+                weaponsLB.Items.Add(weapon.GetName() + " - " + weapon.GetCost());
+            SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
+
         }
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
-            int index = weaponsLB.SelectedIndex;
-            Weapon weapon = division.GetEquipment()[index] as Weapon;
-            division.Unequip(weapon);
-            WeaponTransfer weaponTransfer = new WeaponTransfer();
-            weaponTransfer.weapon = new Weapon();
-            EditForm editForm = new EditForm(weaponTransfer, weapon);
-            editForm.ShowDialog();
-            if (weaponTransfer.weapon != null)
+            //Проверка, выбрано ли оружие
+            if (weaponsLB.SelectedIndex == -1)
+                MessageBox.Show("Weapon was not selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
             {
-                division.Equip(weaponTransfer.weapon);
-                weaponsLB.Items.RemoveAt(index);
-                weaponsLB.Items.Add(weaponTransfer.weapon.GetName() + " - " + weaponTransfer.weapon.GetCost());
+                int index = weaponsLB.SelectedIndex;
+                weapon = division.GetEquipment()[index] as Weapon;
+                EditForm editForm = new EditForm(division, weapon);
+                editForm.ShowDialog();
+                division.Unequip(weapon);
+                //Обновление данной формы
+                weaponsLB.Items.Clear();
+                foreach (Weapon weapon in division.GetEquipment())
+                    weaponsLB.Items.Add(weapon.GetName() + " - " + weapon.GetCost());
                 SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
             }
         }
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            int index = weaponsLB.SelectedIndex;
-            Weapon weapon = division.GetEquipment()[index] as Weapon;
-            division.Unequip(weapon);
-            weaponsLB.Items.RemoveAt(index);
-            SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
+            //Проверка, выбрано ли оружие
+            if (weaponsLB.SelectedIndex == -1)
+                MessageBox.Show("Weapon was not selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                int index = weaponsLB.SelectedIndex;
+                weapon = division.GetEquipment()[index] as Weapon;
+                division.Unequip(weapon);
+                //Удаление оружия из списка
+                weaponsLB.Items.RemoveAt(index);
+                SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
+            }
         }
     }
 }

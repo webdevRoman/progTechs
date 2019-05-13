@@ -6,20 +6,17 @@ using System.Text;
 
 public class Firearm : Weapon
 {
+    protected int destructionRange;
+    protected int magazineCapacity;
 
-    public Firearm()
-    {
-    }
     public Firearm(string name, int damageProof, int initialCost, int destructionRange, int magazineCapacity)
         : base(name, damageProof, initialCost)
     {
         this.destructionRange = destructionRange;
         this.magazineCapacity = magazineCapacity;
         this.cost = CalculateWeaponCost();
+        this.CheckCost();
     }
-
-    protected int destructionRange;
-    protected int magazineCapacity;
 
     public int GetDestructionRange()
     {

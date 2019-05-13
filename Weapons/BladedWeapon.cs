@@ -6,20 +6,17 @@ using System.Text;
 
 public class BladedWeapon : Weapon
 {
+    private int _brandClass;
+    private int _bladeLength;
 
-    public BladedWeapon()
-    {
-    }
     public BladedWeapon(string name, int damageProof, int initialCost, int brandClass, int bladeLength)
         : base(name, damageProof, initialCost)
     {
         this._brandClass = brandClass;
         this._bladeLength = bladeLength;
         this.cost = CalculateWeaponCost();
+        this.CheckCost();
     }
-
-    private int _brandClass;
-    private int _bladeLength;
 
     public int GetBrandClass()
     {

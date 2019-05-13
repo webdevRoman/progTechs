@@ -7,16 +7,12 @@ using System.Collections;
 
 public class MilitaryUnit
 {
-
-    public MilitaryUnit()
-    {
-    }
+    private ArrayList _equipment;
+    
     public MilitaryUnit(ArrayList weapons)
     {
         this._equipment = weapons;
     }
-
-    private ArrayList _equipment;
 
     public ArrayList GetEquipment()
     {

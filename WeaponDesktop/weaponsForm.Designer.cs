@@ -41,7 +41,6 @@
             this.weaponsLB.FormattingEnabled = true;
             resources.ApplyResources(this.weaponsLB, "weaponsLB");
             this.weaponsLB.Name = "weaponsLB";
-            this.weaponsLB.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // AddBtn
             // 

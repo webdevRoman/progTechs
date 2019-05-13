@@ -6,22 +6,25 @@ using System.Text;
 
 public class Weapon
 {
+    private string _name;
+    protected int damageProof;
+    protected int initialCost;
+    protected int cost;
 
-    public Weapon()
-    {
-    }
     public Weapon(string name, int damageProof, int initialCost)
     {
         this._name = name;
         this.damageProof = damageProof;
         this.initialCost = initialCost;
         this.cost = CalculateWeaponCost();
+        this.CheckCost();
     }
 
-    private string _name;
-    protected int damageProof;
-    protected int initialCost;
-    protected int cost;
+    protected void CheckCost()
+    {
+        if (this.cost < 0)
+            this.cost = 0;
+    }
 
     public string GetName()
     {

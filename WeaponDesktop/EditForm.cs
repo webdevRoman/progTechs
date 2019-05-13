@@ -12,31 +12,22 @@ namespace WeaponDesktop
 {
     public partial class EditForm : Form
     {
-        WeaponTransfer weaponTransfer;
-        public EditForm(WeaponTransfer _weaponTransfer)
+        private MilitaryUnit militaryUnit;
+        private Weapon weapon;
+
+        //Добавление оружия
+        public EditForm(MilitaryUnit _militaryUnit)
         {
             InitializeComponent();
-
+            //Заполнение списка классов
             ClassBox.Items.Add("Weapon");
             ClassBox.Items.Add("BladedWeapon");
             ClassBox.Items.Add("Firearm");
             ClassBox.Items.Add("AutomaticWeapon");
 
-            weaponTransfer = _weaponTransfer;
-        }
-
-        public EditForm(WeaponTransfer _weaponTransfer, Weapon _weapon)
-        {
-            InitializeComponent();
-
-            ClassBox.Items.Add("Weapon");
-            ClassBox.Items.Add("BladedWeapon");
-            ClassBox.Items.Add("Firearm");
-            ClassBox.Items.Add("AutomaticWeapon");
-
-            weaponTransfer = _weaponTransfer;
-
-            DamageNum.Minimum = 0;
+            militaryUnit = _militaryUnit;
+            //Граничные значения для полей ввода
+            DamageNum.Minimum = 1;
             DamageNum.Maximum = 1000000;
             InitCostNum.Minimum = 0;
             InitCostNum.Maximum = 1000000;
@@ -50,41 +41,66 @@ namespace WeaponDesktop
             MagazineNum.Maximum = 1000000;
             RapidityNum.Minimum = 0;
             RapidityNum.Maximum = 1000000;
+        }
 
-            if (_weapon != null)
+        //Редактирование оружия
+        public EditForm(MilitaryUnit _militaryUnit, Weapon _weapon)
+        {
+            InitializeComponent();
+            //Заполнение списка классов
+            ClassBox.Items.Add("Weapon");
+            ClassBox.Items.Add("BladedWeapon");
+            ClassBox.Items.Add("Firearm");
+            ClassBox.Items.Add("AutomaticWeapon");
+
+            militaryUnit = _militaryUnit;
+            weapon = _weapon;
+            //Граничные значения для полей ввода
+            DamageNum.Minimum = 1;
+            DamageNum.Maximum = 1000000;
+            InitCostNum.Minimum = 0;
+            InitCostNum.Maximum = 1000000;
+            BrandNum.Minimum = 0;
+            BrandNum.Maximum = 1000000;
+            BladeNum.Minimum = 0;
+            BladeNum.Maximum = 1000000;
+            DestrRangeNum.Minimum = 0;
+            DestrRangeNum.Maximum = 1000000;
+            MagazineNum.Minimum = 0;
+            MagazineNum.Maximum = 1000000;
+            RapidityNum.Minimum = 0;
+            RapidityNum.Maximum = 1000000;
+            //Заполнение полей
+            ClassBox.Text = weapon.GetType().ToString();
+            NameBox.Text = weapon.GetName();
+            DamageNum.Value = weapon.GetDamageProof();
+            InitCostNum.Value = weapon.GetInitialCost();
+            switch (weapon.GetType().ToString())
             {
-                ClassBox.Text = _weapon.GetType().ToString();
-                //this.ClassBox_SelectedIndexChanged(this, e);
-                NameBox.Text = _weapon.GetName();
-                DamageNum.Value = _weapon.GetDamageProof();
-                InitCostNum.Value = _weapon.GetInitialCost();
-                switch (_weapon.GetType().ToString())
-                {
-                    case "BladedWeapon":
-                        {
-                            BladedWeapon _bladedWeapon = (_weapon as BladedWeapon);
-                            BrandNum.Value = _bladedWeapon.GetBrandClass();
-                            BladeNum.Value = _bladedWeapon.GetBladeLength();
-                        }
-                        break;
-                    case "Firearm":
-                        {
-                            Firearm _firearm = (_weapon as Firearm);
-                            DestrRangeNum.Value = _firearm.GetDestructionRange();
-                            MagazineNum.Value = _firearm.GetMagazineCapacity();
-                        }
-                        break;
-                    case "AutomaticWeapon":
-                        {
-                            AutomaticWeapon _automaticWeapon = (_weapon as AutomaticWeapon);
-                            DestrRangeNum.Value = _automaticWeapon.GetDestructionRange();
-                            MagazineNum.Value = _automaticWeapon.GetMagazineCapacity();
-                            RapidityNum.Value = _automaticWeapon.GetRapidity();
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                case "BladedWeapon":
+                    {
+                        BladedWeapon bladedWeapon = (weapon as BladedWeapon);
+                        BrandNum.Value = bladedWeapon.GetBrandClass();
+                        BladeNum.Value = bladedWeapon.GetBladeLength();
+                    }
+                    break;
+                case "Firearm":
+                    {
+                        Firearm firearm = (weapon as Firearm);
+                        DestrRangeNum.Value = firearm.GetDestructionRange();
+                        MagazineNum.Value = firearm.GetMagazineCapacity();
+                    }
+                    break;
+                case "AutomaticWeapon":
+                    {
+                        AutomaticWeapon automaticWeapon = (weapon as AutomaticWeapon);
+                        DestrRangeNum.Value = automaticWeapon.GetDestructionRange();
+                        MagazineNum.Value = automaticWeapon.GetMagazineCapacity();
+                        RapidityNum.Value = automaticWeapon.GetRapidity();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -93,6 +109,7 @@ namespace WeaponDesktop
 
         }
 
+        //Динамическое добавление/удаление компонентов на форме при изменении выбора класса
         private void ClassBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (ClassBox.Text)
@@ -100,18 +117,13 @@ namespace WeaponDesktop
                 case "Weapon":
                     {
                         while (this.Controls.Count > 10)
-                        {
                             this.Controls.RemoveAt(this.Controls.Count - 1);
-                        }
-
                     }
                     break;
                 case "BladedWeapon":
                     {
                         while (this.Controls.Count > 10)
-                        {
                             this.Controls.RemoveAt(this.Controls.Count - 1);
-                        }
                         BrandLbl.Text = "Brand Class:";
                         BrandNum.Width = NameBox.Width;
                         BrandLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
@@ -129,9 +141,7 @@ namespace WeaponDesktop
                 case "Firearm":
                     {
                         while (this.Controls.Count > 10)
-                        {
                             this.Controls.RemoveAt(this.Controls.Count - 1);
-                        }
                         DestrRangeLbl.Text = "Destruction Range:";
                         DestrRangeNum.Width = NameBox.Width;
                         DestrRangeLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
@@ -149,9 +159,7 @@ namespace WeaponDesktop
                 case "AutomaticWeapon":
                     {
                         while (this.Controls.Count > 10)
-                        {
                             this.Controls.RemoveAt(this.Controls.Count - 1);
-                        }
                         DestrRangeLbl.Text = "Destruction Range:";
                         DestrRangeNum.Width = NameBox.Width;
                         DestrRangeLbl.Location = new Point(InitCostLbl.Location.X, InitCostLbl.Location.Y + 50);
@@ -184,34 +192,34 @@ namespace WeaponDesktop
                 case "Weapon":
                     {
                         Weapon newWeapon = new Weapon(NameBox.Text, (int)DamageNum.Value, (int)InitCostNum.Value);
-                        weaponTransfer.weapon = newWeapon;
+                        militaryUnit.Equip(newWeapon);
                         Dispose();
                     }
                     break;
                 case "BladedWeapon":
                     {
                         BladedWeapon newWeapon = new BladedWeapon(NameBox.Text, (int)DamageNum.Value, (int)InitCostNum.Value, (int)BrandNum.Value, (int)BladeNum.Value);
-                        weaponTransfer.weapon = newWeapon;
+                        militaryUnit.Equip(newWeapon);
                         Dispose();
                     }
                     break;
                 case "Firearm":
                     {
                         Firearm newWeapon = new Firearm(NameBox.Text, (int)DamageNum.Value, (int)InitCostNum.Value, (int)DestrRangeNum.Value, (int)MagazineNum.Value);
-                        weaponTransfer.weapon = newWeapon;
+                        militaryUnit.Equip(newWeapon);
                         Dispose();
                     }
                     break;
                 case "AutomaticWeapon":
                     {
                         AutomaticWeapon newWeapon = new AutomaticWeapon(NameBox.Text, (int)DamageNum.Value, (int)InitCostNum.Value, (int)DestrRangeNum.Value, (int)MagazineNum.Value, (int)RapidityNum.Value);
-                        weaponTransfer.weapon = newWeapon;
+                        militaryUnit.Equip(newWeapon);
                         Dispose();
                     }
                     break;
                 default:
                     {
-                        weaponTransfer.weapon = null;
+                        weapon = null;
                         MessageBox.Show("Class name was entered incorrectly", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
@@ -220,7 +228,9 @@ namespace WeaponDesktop
 
         private void CancelBtn_Click(object sender, EventArgs e)
         {
-            weaponTransfer.weapon = null;
+            if (weapon != null)
+                militaryUnit.Equip(weapon);
+            weapon = null;
             Dispose();
         }
     }

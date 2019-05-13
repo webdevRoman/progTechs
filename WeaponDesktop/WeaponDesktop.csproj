@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creator.cs" />
-    <Compile Include="WeaponTransfer.cs" />
     <Compile Include="EditForm.cs">
       <SubType>Form</SubType>
     </Compile>

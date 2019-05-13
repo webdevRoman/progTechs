@@ -167,9 +167,6 @@
   <data name="&gt;&gt;AddBtn.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="EditBtn.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="EditBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 130</value>
   </data>
@@ -193,9 +190,6 @@
   </data>
   <data name="&gt;&gt;EditBtn.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="DeleteBtn.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="DeleteBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 210</value>

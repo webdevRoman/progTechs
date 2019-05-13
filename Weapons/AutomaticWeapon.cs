@@ -6,18 +6,15 @@ using System.Text;
 
 public class AutomaticWeapon : Firearm
 {
+    private int _rapidity;
 
-    public AutomaticWeapon()
-    {
-    }
     public AutomaticWeapon(string name, int damageProof, int initialCost, int destrucyionRange, int magazineCapacity, int rapidity)
         : base(name, damageProof, initialCost, destrucyionRange, magazineCapacity)
     {
         this._rapidity = rapidity;
         this.cost = CalculateWeaponCost();
+        this.CheckCost();
     }
-
-    private int _rapidity;
 
     public int GetRapidity()
     {
