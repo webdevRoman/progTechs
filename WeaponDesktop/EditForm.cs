@@ -28,19 +28,19 @@ namespace WeaponDesktop
             militaryUnit = _militaryUnit;
             //Граничные значения для полей ввода
             DamageNum.Minimum = 1;
-            DamageNum.Maximum = 1000000;
+            DamageNum.Maximum = 100;
             InitCostNum.Minimum = 0;
             InitCostNum.Maximum = 1000000;
             BrandNum.Minimum = 0;
-            BrandNum.Maximum = 1000000;
+            BrandNum.Maximum = 10;
             BladeNum.Minimum = 0;
-            BladeNum.Maximum = 1000000;
+            BladeNum.Maximum = 200;
             DestrRangeNum.Minimum = 0;
-            DestrRangeNum.Maximum = 1000000;
+            DestrRangeNum.Maximum = 10000;
             MagazineNum.Minimum = 0;
-            MagazineNum.Maximum = 1000000;
+            MagazineNum.Maximum = 1000;
             RapidityNum.Minimum = 0;
-            RapidityNum.Maximum = 1000000;
+            RapidityNum.Maximum = 1000;
         }
 
         //Редактирование оружия
@@ -57,19 +57,19 @@ namespace WeaponDesktop
             weapon = _weapon;
             //Граничные значения для полей ввода
             DamageNum.Minimum = 1;
-            DamageNum.Maximum = 1000000;
+            DamageNum.Maximum = 100;
             InitCostNum.Minimum = 0;
             InitCostNum.Maximum = 1000000;
             BrandNum.Minimum = 0;
-            BrandNum.Maximum = 1000000;
+            BrandNum.Maximum = 10;
             BladeNum.Minimum = 0;
-            BladeNum.Maximum = 1000000;
+            BladeNum.Maximum = 200;
             DestrRangeNum.Minimum = 0;
-            DestrRangeNum.Maximum = 1000000;
+            DestrRangeNum.Maximum = 10000;
             MagazineNum.Minimum = 0;
-            MagazineNum.Maximum = 1000000;
+            MagazineNum.Maximum = 1000;
             RapidityNum.Minimum = 0;
-            RapidityNum.Maximum = 1000000;
+            RapidityNum.Maximum = 1000;
             //Заполнение полей
             ClassBox.Text = weapon.GetType().ToString();
             NameBox.Text = weapon.GetName();
@@ -102,11 +102,6 @@ namespace WeaponDesktop
                 default:
                     break;
             }
-        }
-
-        private void EditForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         //Динамическое добавление/удаление компонентов на форме при изменении выбора класса

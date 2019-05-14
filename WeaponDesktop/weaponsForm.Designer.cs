@@ -78,7 +78,6 @@
             this.Controls.Add(this.AddBtn);
             this.Controls.Add(this.weaponsLB);
             this.Name = "WeaponsForm";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

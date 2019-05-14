@@ -27,11 +27,6 @@ namespace WeaponDesktop
             SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddBtn_Click(object sender, EventArgs e)
         {
             EditForm editForm = new EditForm(division);
@@ -41,7 +36,6 @@ namespace WeaponDesktop
             foreach (Weapon weapon in division.GetEquipment())
                 weaponsLB.Items.Add(weapon.GetName() + " - " + weapon.GetCost());
             SumLbl.Text = "Total cost: " + division.CalculateEquipmentCost();
-
         }
 
         private void EditBtn_Click(object sender, EventArgs e)

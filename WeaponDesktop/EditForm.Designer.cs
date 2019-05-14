@@ -146,6 +146,7 @@ namespace WeaponDesktop
             this.Controls.Add(this.NameBox);
             this.Controls.Add(this.ClassBox);
             this.Name = "EditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditForm";
             ((System.ComponentModel.ISupportInitialize)(this.DamageNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InitCostNum)).EndInit();
@@ -177,5 +178,9 @@ namespace WeaponDesktop
         private NumericUpDown MagazineNum = new NumericUpDown();
         private Label RapidityLbl = new Label();
         private NumericUpDown RapidityNum = new NumericUpDown();
+
+        private Panel BladedWeaponPanel = new Panel();
+        private Panel Firearm = new Panel();
+        private Panel AutomaticWeapon = new Panel();
     }
 }
